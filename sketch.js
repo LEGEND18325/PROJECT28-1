@@ -6,8 +6,7 @@ const Body = Matter.Body;
 const Constraint = Matter.Constraint;
 
 
-var tree;
-var launchingForce=100;
+var tree,treeimg;
 
 var mango1,mango2,mango3,mango4,mango5,mango6,mango7,mango8;
 var stone;
@@ -16,7 +15,8 @@ var boyimg,boy;
 var slingshot;
 function preload()
 {
-	boyimg=loadImage("Plucking mangoes/boy.png")
+  boyimg=loadImage("Plucking mangoes/boy.png")
+  treeimg=loadImage("Plucking mangoes/tree.png")
 }
 
 function setup() {
@@ -28,7 +28,7 @@ function setup() {
 
 	//Create the Bodies Here.
 	ground = new Ground(600,500,1200,50);
-	tree = new Tree(600,300,0,0)
+	//tree = new Tree(600,300,10,10)
 	
 	mango1 = new Mangoes(600,200,10,10)
 	mango2 = new Mangoes(560,155,10,10)
@@ -38,7 +38,7 @@ function setup() {
 	mango6 = new Mangoes(650,260,10,10)
 	mango7 = new Mangoes(700,200,10,10)
 	mango8 = new Mangoes(750,240,10,10)
-	stone = new Stone(200,400,40,40)
+	stone = new Stone(250,400,40,40)
   //juno = new Juno(250,450,10,10)
 //  boy=createSprite(250,420,0,0)
  // boy.addImage(boyimg)
@@ -56,10 +56,10 @@ function draw() {
  // Engine.update(engine);
   background(0);
   image(boyimg,165,330,200,200)
- 
+  image(treeimg,400,100,400,400)
 
    ground.display();
-  tree.display();
+  //tree.display();
   
   mango1.display();
   mango2.display();
@@ -85,23 +85,17 @@ function draw() {
 
 
 function detectollision(lstone,lmango){
+mangoBodyPosition= lmango.body.position
 
-mangoBodyPosition=lmango.body.position
 stoneBodyPosition=lstone.body.position
 
-var distance=dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y)
+var distance=dist(stoneBodyPosition.x,stoneBodyPosition.y,mangoBodyPosition.x,mangoBodyPosition.y)
+if(distance<=lmango.r+lstone.r){
 
-  if(distance<=lmango.r+lstone.r)
-  {
-    
-    Matter.Body.setStatic(lmango.body,false);
-  }
-
+	Matter.Body.setStatic(lmango.body,false)
+}
 }
     
-
-
-
 function mouseDragged(){
 
 	Matter.Body.setPosition(stone.body,{x:mouseX,y:mouseY})

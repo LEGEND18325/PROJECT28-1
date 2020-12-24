@@ -14,8 +14,9 @@ var options={
 
 
 this.body = Bodies.circle(x,y,r,options);
-      this.width = width;
-      this.height = height;
+this.r = r;
+    
+    
       this.image = loadImage("Plucking mangoes/mango.png");
       World.add(world, this.body);
 

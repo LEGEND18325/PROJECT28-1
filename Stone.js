@@ -5,18 +5,18 @@ class Stone{
     var options={
     
         isStatic: false,
-        restitution:0.5,
+        restitution:0,
         friction:1,
-        density:0.1
+        density:1.2
     
     
         
-    }
-
-    
+	}
+	
+	
+		
     this.body = Bodies.circle(x,y,r,options);
-          //this.width = width;
-          //this.height = height;
+	this.r=r
           this.image = loadImage("Plucking mangoes/stone.png");
           World.add(world, this.body);
     
